@@ -1,4 +1,27 @@
 {
 	"Welcome": "Welcome",
-	"A brand new app.": "A brand new app."
+	"A brand new app.": "A brand new app.",
+	"Welcome to Our School": "Welcome to Our School",
+	"Home": "Home",
+	"Add Class": "Add Class",
+	"Add Student": "Add Student",
+	"List Students": "List Students",
+	"Add User": "Add User",
+	"List Users": "List Users",
+	"Class Room": "Class Room",
+	"Log Out": "Log Out",
+	"This is a Sails.js app for managing a class students": "This is a Sails.js app for managing a class students",
+	"Name": "Name",
+	"Lesson": "Lesson",
+	"Teacher": "Teacher",
+	"Options": "Options",
+	"No students find to show here!": "No students find to show here!",
+	"First Name": "First Name",
+	"Last Name": "Last Name",
+	"Member": "Member",
+	"submit": "submit",
+	"Name field can't be empty!": "Name field can't be empty!",
+	"Name field cant be empty!": "Name field cant be empty!",
+	"Delete": "Delete",
+	"Edit": "Edit"
 }
