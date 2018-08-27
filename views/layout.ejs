@@ -6,16 +6,15 @@
   <!-- Viewport mobile tag for sensible mobile support -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <link href="/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
   <!--STYLES-->
   <link rel="stylesheet" href="/styles/importer.css">
   <!--STYLES END-->
 </head>
-
 <body>
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
-  <a class="navbar-brand" href="/">Class Room</a>
+  <a class="navbar-brand" href="/"><%=__('Class Room')%></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -23,23 +22,57 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/"><%=__('Home')%></a>
       </li>
-      <li class="nav-item">
-      <a  class="nav-link" href="/students/list">Student's List</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="/file/viewUpload"><%=__('Upload')%></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/students/add">Add Student</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="/file/listFiles"><%=__('List Files')%></a>
       </li>
+      <%if (req.session.user[0].role == 'tch' || req.session.user[0].role == 'adm') { %>
+      <li class="nav-item active">
+        <a  class="nav-link" href="/classes/add"><%=__('Add Class')%></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/students/add"><%=__('Add Student')%></a>
+      </li>
+      <%}%>
+      <li class="nav-item active">
+      <a class="nav-link" href="/students/list"><%=__('List Students')%></a>
+      </li>
+      <%if (req.session.user[0].role == 'adm') { %>
+              <li class="nav-item active">
+                <a class="nav-link" href="/users/addUser"><%=__('Add User')%></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/users/list"><%=__('List Users')%></a>
+              </li>
+      <%}%> 
+      <li>
+        <%if(req.session.lang) {%>
+          <%if(req.session.lang == 'fa'){ %>
+            <a class="nav-link active" href="?lang=en">EN</a>
+          <%}else if(req.session.lang == 'en'){%>
+            <a class="nav-link active" href="?lang=fa">FA</a>
+          <%}%>
+        <%}else{%>
+          <a class="nav-link active" href="?lang=fa">FA</a>
+        <%}%>
+      </li>   
+      <li class="nav-item active">
+        <a  class="nav-link" href="/users/signOut"><%=__('Log Out')%></a>
+      </li>
+
     </ul>
   </div>
 </nav>
 <div class="container">
   <%- body %>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+<script src="/jquery.min.js"></script>
+<script src="/popper.js"></script>
+<script src="/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 <!--SCRIPTS-->
 <script src="/js/dependencies/sails.io.js"></script>
 <!--SCRIPTS END-->

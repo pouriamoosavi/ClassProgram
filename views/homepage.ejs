@@ -1,4 +1,54 @@
-<h1 class="display-4">Welcome to Our Class</h1>
-<p class="mb-4">This is a Sails.js app for managing a class students</p>
-<a href="/students/add" class="btn btn-primary">Add Student</a>
-<a href="/students/list" class="btn btn-primary">Student's List</a>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Class Students.js</title>
+
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+</head>
+
+
+<h1 class="display-4"><%= __('Welcome to Our School')%></h1>
+<p class="mb-4"><%=__('This is a Sails.js app for managing a class students')%></p>
+<%if(req.session.user[0].role == 'tch' || req.session.user[0].role == 'adm') {%>
+  <a href="/classes/add" class="btn btn-primary"><%=__('Add Class')%></a>
+  <a href="/students/add" class="btn btn-primary"><%=__('Add Student')%></a>
+<%}%>
+<a href="/students/list" class="btn btn-primary"><%=__('List Students')%></a>
+<hr>
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th><%=__('Name')%></th>
+      <th><%=__('Lesson')%></th>
+      <th><%=__('Teacher')%></th>
+      <%if(req.session.user[0].role == 'tch' || req.session.user[0].role == 'adm') {%>
+        <th><%=__('Options')%></th>
+      <%}%>
+    </tr>
+    </thead>
+    <tbody>
+        <% classes.forEach(function (myClass) { %>
+          <tr>
+            <td><a href="/classes/show/<%=myClass.id%>"> <%=myClass.name%> </a></td>
+            <td><%=myClass.lesson%></td>
+            <td><%=myClass.teacher%></td>
+            <td>
+                <%if(req.session.user[0].role == 'tch' || req.session.user[0].role == 'adm') {%>
+                  <a href="/classes/delete/<%=myClass.id%>" class="btn btn-danger"><%=__('Delete')%></a>
+                  <a href="/classes/edit/<%=myClass.id%>" class="btn btn-primary"><%=__('Edit')%></a>
+                <%}%>
+            </td>
+          </tr>
+          <%});%>
+    </tbody>
+  </table>
+  <div class="row">
+  <!-- <video id="chorn" width="700" height="400" controls>
+    <source src="/chorn.mp4" type="video/mp4">
+  </video> -->
+  <img height="400" src="/images/img.jpg"/>
+</div>
+<br>
+<br>

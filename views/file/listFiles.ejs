@@ -1,0 +1,19 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>File Name</th>
+            <th>Download</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%for(var f in files){%>
+            <tr>
+                <td><%=parseInt(f)+1%></td>
+                <td><%=files[f]%></td>
+                <td><a class="btn btn-success" href="/file/download?name=<%=files[f]%>">Download</a></td>
+            </tr>
+        <%}%>
+    </tbody>
+
+</table>

@@ -1,0 +1,45 @@
+<h1 class="display-4"><%=__('Edit Session')%></h1>
+<form method="post" action="/classes/updateSession">
+  <div class="form-group">
+    <%if (typeof msg == 'string') {%>
+      <h5 style="color:red"><%=msg%></h5>
+    <%};%>   
+    </h3>
+    <label for="subject"><%=__('Subject')%></label>
+    <input type="text" name="subject" value="<%=mySession.subject%>" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="date"><%=__('Date')%></label>
+    <input type="text" name="date" value="<%=mySession.date%>" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="duration"><%=__('Duration')%></label>
+    <input type="text" name="duration" value="<%=mySession.duration%>" class="form-control">
+  </div>
+  <table class="table table-sm table-striped">
+    <thead>
+    <tr>
+      <th><%=__('First Name')%></th>
+      <th><%=__('Last Name')%></th>
+      <th> </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% myClass.students.forEach(function (student) { %>
+    <tr>
+      <td><%=student.firstName%></td>
+      <td><%=student.lastName%></td>
+      <%if(studentsIds.includes(student.id)) {%>
+        <td><input type="checkbox" name="student" value="<%=student.id%>" checked> <%=__('Present')%></td>
+      <%}else{%>
+        <td><input type="checkbox" name="student" value="<%=student.id%>"> <%=__('Present')%></td>
+      <%};%>
+    </tr>
+    <%});%>
+    </tbody>
+  </table>
+  <input name="sid" type="hidden" value="<%=mySession.id%>" hidden="true">
+  <input name="cid" type="hidden" value="<%=myClass.id%>" hidden="true">
+  <button type="submit" value="submit" class="btn btn-primary"><%= __('Submit')%></button>
+  <hr>
+</form>

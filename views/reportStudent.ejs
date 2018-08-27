@@ -1,0 +1,67 @@
+<h1>Report <%=student.firstName%></h1>
+<br>
+<h5>Name: <%=student.firstName%></h5>
+<h5>Last Name: <%=student.lastName%></h5>
+<h5>Telephone: <%=student.tel%></h5>
+<h5>Classes List:</h5>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Lesson</th>
+            <th>Teacher</th>
+            <th>Sessions</th>
+            <th title="Presentation by hour">PbH</th>
+            <th title="Presentation by session">PbS</th>
+        </tr>
+    </thead>
+    <%if(classes != null) {%>
+        <tbody>
+            <%classes.forEach(function (myClass) {%>
+                <tr>
+                    <td><%=myClass.name%></td>
+                    <td><%=myClass.lesson%></td>
+                    <td><%=myClass.teacher%></td>
+                    <td>
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Date</th>
+                                    <th title="Duration">Dur</th>
+                                    <th>Status</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <% if(typeof myClass.sessions != 'undefined' && myClass.sessions != null){%> 
+                                        <% myClass.sessions.forEach(function (session) { %>
+                                            <tr>  
+                                                <td><%=session.subject%></td>
+                                                <td><%=session.date%></td>
+                                                <td><%=session.duration%></td>                                           
+                                                <%if(session.present) {%>
+                                                    <td style="color:green;">Present</td>
+                                                <%}else {%>
+                                                    <td style="color:red;">Absent</td>
+                                                <%}%>
+                                            </tr>
+                                        <%});%>
+                                    <%};%>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <%="(" + myClass.presentHours + "/" + myClass.totalHours + ") " + parseInt((( myClass.presentHours*100)/ myClass.totalHours), 10) + "%"%>
+                    </td>                    
+                    <td>
+                        <%= "(" + myClass.presentSessions + "/" + myClass.totalSessions + ") " + parseInt((( myClass.presentSessions*100)/ myClass.totalSessions), 10) + "%";%>
+                    </td>
+                </tr>
+            <%});%>
+        </tbody>
+    <%};%>
+</table>
+<hr>

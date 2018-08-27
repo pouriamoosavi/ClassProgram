@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="/bootstrap.min.js"></script>
+    <script src="/jquery.min.js"></script>
+    <style>
+        .wrapper {
+            margin-top: 80px;
+            margin-bottom: 20px;
+        }
+
+        .form-signin {
+            max-width: 420px;
+            padding: 30px 38px 66px;
+            margin: 0 auto;
+            background-color: #eee;
+            border: 3px dotted rgba(0, 0, 0, 0.1);
+        }
+
+        .form-signin-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            position: relative;
+            font-size: 16px;
+            height: auto;
+            padding: 10px;
+        }
+
+        input[type="text"] {
+            margin-bottom: 10px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        input[type="password"] {
+            margin-bottom: 3px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+
+        .panel-footer {
+            padding: 1px 15px;
+            color: #A0A0A0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <form action="/users/createUser" method="post" name="Login_Form" class="form-signin" onsubmit="checkPassword">
+                <%if (typeof msg == 'string') {%>
+                    <h5 style="color:red"><%=msg%></h5>
+                <%}else{%>  
+                <h3 class="form-signin-heading"><%=__('Fill all inputs')%></h3>
+                <%};%>
+                <input type="text" class="form-control" name="username" placeholder="<%=__('Username')%>" required="" autofocus="" />
+                <input type="password" class="form-control" name="password" placeholder="<%=__('Password')%>" required="" />
+                <input type="password" class="form-control" name="password1" id="password1" placeholder="<%=__('Confirm Password')%>" required="" style="margin-bottom: 20px"/>
+                
+                <div class="form-group">
+                    <input type="radio" name="role" value="std" checked> <%=__('Student')%>
+                    <br>
+                    <input type="radio" name="role" value="tch"> <%=__('Teacher')%>
+                    <br>
+                    <input type="radio" name="role" value="adm"> <%=__('Admin')%>
+                    <br>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"><%=__('Submit')%></button>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+var checkPassword = (req, res) => {
+    if( $("#password").val() != $("#password1").val()) {
+        res.view("logInPage", {msg: <%=__('Passwords doesn\'t match')%>});
+        return false;
+    }
+    return true;
+}
+</script>

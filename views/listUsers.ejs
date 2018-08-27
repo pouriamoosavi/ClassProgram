@@ -1,0 +1,23 @@
+<table class="table table-sm table-striped">
+    <thead>
+    <tr>
+      <th><%=__('Username')%></th>
+      <th><%=__('Type')%></th>
+      <th><%=__('Options')%> </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% users.forEach(function (user) { %>
+    <tr>
+      <td><%=user.userName%></td>
+      <td><%=user.role%></td>
+      <td>
+        <%if (user.role != 'adm') {%>
+          <a href="/users/delete/<%=user.id%>" class="btn btn-sm btn-danger"><%=__('Delete')%></a>
+        <%}%>
+      </td>
+    </tr>
+    <%});%>
+    </tbody>
+  </table>
+  

@@ -1,0 +1,85 @@
+<h1><%=__('Show')%> <%=name%></h1>
+<br>
+<h5><%=__('Name')%>: <%=name%></h5>
+<h5><%=__('Lesson')%>: <%=lesson%></h5>
+<h5><%=__('Teacher')%>: <%=teacher%></h5>
+<h5><%=__('Passed Sessions')%>:</h5>
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th><%=__('Subject')%></th>
+                <th><%=__('Date')%></th>
+                <th><%=__('Duration')%></th>
+                <th><%=__('Present Students')%></th>
+                <th><%=__('Options')%></th>
+            </tr>
+        </thead>
+        <%if(sessions != null) {%>
+        <tbody>
+            <%sessions.forEach(function (mySession) {%>
+                <tr>
+                        <td><%=mySession.subject%></td>
+                        <td><%=mySession.date%></td>
+                        <td><%=mySession.duration%></td>
+                        <td>
+                            <table class="table table-sm table-striped">
+                                <thead>
+                                    <tr>
+                                        <th><%=__('First Name')%></th>
+                                        <th><%=__('Last Name')%></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <%//if(typeof mySession.student != 'undefined'){%> 
+                                            <% mySession.students.forEach(function (student) { %>
+                                                <tr>
+                                                    <td><%=student.firstName%></td>
+                                                    <td><%=student.lastName%></td>
+                                                </tr>
+                                            <%});%>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <%if(req.session.user[0].role == 'tch' || req.session.user[0].role == 'adm') {%>
+                            <td><a href="/classes/editSession/<%=id%>/<%=mySession.id%>" class="btn btn-primary" ><%=__('Edit')%></a></td>
+                        <%}%>
+                </tr>
+            <%});%>
+        </tbody>
+        <%};%>
+    </table>
+<br>
+<%if(req.session.user[0].role == 'tch' || req.session.user[0].role == 'adm') {%>
+    <a href="/classes/addSession/<%=id%>" class="btn btn-primary"><%=__('Add Session')%></a>
+<%}%>
+<hr>
+<h5><%=__('All Students')%>:</h5>
+<%if(students.length > 0) {%>
+    <table class="table table-sm table-striped">
+      <thead>
+      <tr>
+        <th><%=__('First Name')%></th>
+        <th><%=__('Last Name')%></th>
+        <th> </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% students.forEach(function (student) { %>
+      <tr>
+        <td><%=student.firstName%></td>
+        <td><%=student.lastName%></td>
+      </tr>
+      <%});%>
+      </tbody>
+    </table>
+<%}else{%>
+      <h5 style="color:red"><%=__('No students find to show here!')%></h5>
+<%}%>
+<%if(req.session.user[0].role == 'tch' || req.session.user[0].role == 'adm') {%>
+    <a href="/classes/delete/<%=id%>" class="btn btn-danger"><%=__('Delete')%></a>
+    <a href="/classes/edit/<%=id%>" class="btn btn-primary"><%=__('Edit')%></a>
+<%}%>
+<hr>
+      

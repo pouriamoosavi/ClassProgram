@@ -1,0 +1,22 @@
+<h1 class="display-4"><%=__('Edit Student')%></h1>
+<h5><%=__('Note that if you let an input blank it will be set as noting!')%></h5>
+<form method="post" action="/students/update">
+  <div class="form-group">
+    <%if (typeof msg == 'string') {%>
+      <h5 style="color:red"><%=msg%></h5>
+    <%};%>
+    <label for="firstName"><%=__('First Name')%></label>
+    <input type="text" name="firstName" class="form-control" value="<%=myStudent.firstName%>">
+  </div>
+  <div class="form-group">
+    <label for="lastName"><%=__('Last Name')%></label>
+    <input type="text" name="lastName" class="form-control" value="<%=myStudent.lastName%>">
+  </div>
+  <div class="form-group">
+    <label for="tel"><%=__('Telephone')%></label>
+    <input type="text" name="tel" class="form-control" value="<%=myStudent.tel%>">
+  </div>
+  <input name="id" value="<%=myStudent.id%>" hidden="true">
+  <button type="submit" value="submit" class="btn btn-primary"><%= __('Submit')%></button>
+  <hr>
+</form>

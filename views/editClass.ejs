@@ -1,0 +1,49 @@
+<h1 class="display-4"><%=__('Edit Class')%></h1>
+<h5><%=__('Note that if you let an input blank it will be set as noting!')%></h5>
+<form method="post" action="/classes/update">
+  <div class="form-group">
+    <%if (typeof msg == 'string') {%>
+      <h5 style="color:red"><%=msg%></h5>
+    <%};%>   
+    </h3>
+    <label for="name"><%=__('Name')%></label>
+    <input type="text" name="name" class="form-control" value="<%=myClass.name%>">
+  </div>
+  <div class="form-group">
+    <label for="lesson"><%=__('Lesson')%></label>
+    <input type="text" name="lesson" class="form-control" value="<%=myClass.lesson%>">
+  </div>
+  <div class="form-group">
+    <label for="teacher"><%=__('Teacher')%></label>
+    <input type="text" name="teacher" class="form-control" value="<%=myClass.teacher%>">
+  </div>
+  <%if(students.length > 0) {%>
+  <table class="table table-sm table-striped">
+    <thead>
+    <tr>
+      <th><%=__('First Name')%></th>
+      <th><%=__('Last Name')%></th>
+      <th> </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% students.forEach(function (student) { %>
+    <tr>
+      <td><%=student.firstName%></td>
+      <td><%=student.lastName%></td>
+        <%if(studentsIds.includes(student.id)) {%>
+          <td><input type="checkbox" name="student" value="<%=student.id%>" checked> <%=__('Member')%></td>
+        <%}else{%>
+          <td><input type="checkbox" name="student" value="<%=student.id%>"> <%=__('Member')%></td>
+        <%};%>
+    </tr>
+    <%});%>
+    </tbody>  
+  </table>
+  <%}else{%>
+    <h5 style="color:red"><%=__('No students find to show here!')%></h5>
+  <%}%>
+  <input type="hidden" name="id" value="<%=myClass.id%>">
+  <button type="submit" value="submit" class="btn btn-primary"><%= __('Submit')%></button>
+  <hr>
+</form>

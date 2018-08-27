@@ -1,0 +1,44 @@
+<h1 class="display-4"><%=__('Add Session to') <%=myClass.name%></h1>
+<form method="post" action="/classes/creatSession">
+  <div class="form-group">
+    <%if (typeof msg == 'string') {%>
+      <h5 style="color:red"><%=msg%></h5>
+    <%};%>   
+    </h3>
+    <label for="subject"><%=__('Subject')%></label>
+    <input type="text" name="subject" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="date"><%=__('Date')%></label>
+    <input type="text" name="date" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="duration"><%=__('Duration')%></label>
+    <input type="text" name="duration" class="form-control">
+  </div>
+  <%if(myClass.students.length > 0) {%>
+    <table class="table table-sm table-striped">
+      <thead>
+      <tr>
+        <th><%=__('First Name')%></th>
+        <th><%=__('Last Name')%></th>
+        <th> </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% myClass.students.forEach(function (student) { %>
+      <tr>
+        <td><%=student.firstName%></td>
+        <td><%=student.lastName%></td>
+        <td><input type="checkbox" name="student" value="<%=student.id%>">  <%=__('Member')%></td>
+      </tr>
+      <%});%>
+      </tbody>
+    </table>
+    <%}else{%>
+      <h5 style="color:red"><%=__('No students find to show here!')%></h5>
+    <%}%>
+  <input name="id" value="<%=myClass.id%>" hidden="true">
+  <button type="submit" value="submit" class="btn btn-primary"><%= __('Submit')%></button>
+  <hr>
+</form>
