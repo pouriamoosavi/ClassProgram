@@ -22,28 +22,82 @@
 
 module.exports.routes = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
+    /***************************************************************************
+    *                                                                          *
+    * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
+    * etc. depending on your default view engine) your home page.              *
+    *                                                                          *
+    * (Alternatively, remove this and add an `index.html` file in your         *
+    * `assets` directory)                                                      *
+    *                                                                          *
+    ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  }
+    '/': {
+        action: 'classes/list'
+    },
+    '/classes/show/:id': {
+        action: 'classes/show'
+    },
+    '/classes/delete/:id': {
+        action: 'classes/delete'
+    },
+    '/classes/addSession/:id': {
+        action: 'classes/addSession'
+    },
+    '/classes/edit/:id': {
+        action: 'classes/edit'
+    },
+    'classes/update/:id': {
+        action: 'classes/update'
+    },
+    '/classes/editSession/:cid/:sid': {
+        action: 'classes/editSession'
+    },
+    '/students/present/:id': {
+        action: 'students/present'
+    },
+    '/students/absent/:id': {
+        action: 'students/absent'
+    },
+    '/students/delete/:id': {
+        action: 'students/delete'
+    },
+    '/students/edit/:id': {
+        action: 'students/edit'
+    },
+    'students/update/:id': {
+        action: 'students/update'
+    },
+    '/students/report/:id': {
+        action: 'students/report'
+    },
+    '/users/delete/:id' : {
+        action: 'users/delete'
+    },
+    '/file/upload' :{
+        action: 'file/upload'
+    },
+    '/file/listFiles':{
+        action: 'file/listFiles'
+    },
+    '/file/download/:name':{
+        action: 'file/download'
+    }
 
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+
+    // ,'/students/add':{
+    //   action: '/students/add'
+    // }
+
+
+    /***************************************************************************
+    *                                                                          *
+    * Custom routes here...                                                    *
+    *                                                                          *
+    * If a request to a URL doesn't match any of the custom routes above, it   *
+    * is matched against Sails route blueprints. See `config/blueprints.js`    *
+    * for configuration options and examples.                                  *
+    *                                                                          *
+    ***************************************************************************/
 
 };

@@ -4,8 +4,7 @@
  */
 
 module.exports.models = {
-  migrate: 'safe',
-  schema: true,
+
   // These settings make the .update(), .create() and .createEach()
   // work like they did in 0.12, by returning records in the callback.
   // This is pretty ineffecient, so if you don't _always_ need this feature, you

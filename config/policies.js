@@ -16,9 +16,12 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.policies.html
  */
 
-
 module.exports.policies = {
-
+ // "*": 'changeLocale',
+  "StudentsController": {'*': ['changeLocale','checkLogIn','checktch',], 'list': ['changeLocale','checkLogIn','checkstd'], 'report': ['changeLocale','checkLogIn','checkstd']},
+  "ClassesController": {'*': ['changeLocale','checkLogIn','checktch'], 'list': ['changeLocale','checkLogIn','checkstd'], 'show': ['changeLocale','checkLogIn','checkstd']},
+  "UsersController": {'list': ['changeLocale','checkLogIn','checkAdm'], 'addUser': ['changeLocale','checkLogIn','checkAdm'],
+   'createUser': ['changeLocale','checkLogIn','checkAdm'], 'delete': ['changeLocale','checkLogIn','checkAdm']}
   /***************************************************************************
   *                                                                          *
   * Default policy for all controllers and actions (`true` allows public     *
