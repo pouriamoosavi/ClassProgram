@@ -5,6 +5,9 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "@sailshq/upgrade": "^1.0.9",
+    "async": "2.1.4",
+    "bcryptjs": "^2.4.3",
     "ejs": "2.3.4",
     "grunt": "1.0.1",
     "grunt-contrib-clean": "1.0.0",
@@ -19,10 +22,15 @@
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.5.2",
     "include-all": "^1.0.0",
+    "lodash": "3.10.1",
     "rc": "1.0.1",
-    "sails": "~0.12.14",
-    "sails-disk": "~0.10.9",
-    "sails-mongo": "^0.12.2"
+    "sails": "^1.0.1",
+    "sails-disk": "^1.0.1",
+    "sails-hook-grunt": "^1.0.8",
+    "sails-hook-i18n": "^0.1.2",
+    "sails-hook-orm": "^2.0.0",
+    "sails-hook-sockets": "^1.5.2",
+    "sails-mongo": "^1.0.0"
   },
   "scripts": {
     "debug": "node debug app.js",
