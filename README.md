@@ -7,6 +7,6 @@ to run: <br>
   2-Enter the directory. (cd /path/to/dir) <br>
   3-Install sails.js localy. (npm i sails) <br>
   4-Run the application. (node app)<br>
-  5-Then you need to login. you can always login with username admin and password admin.
-  6-Congratulation, you're done!
+  5-Then you need to login. you can always login with username admin and password admin.<br>
+  6-Congratulation, you're done!<br>
 </p>
